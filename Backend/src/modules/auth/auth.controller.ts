@@ -8,8 +8,8 @@ import { verifiedSchema, VerifiedZodDto } from './dto/verifiedZod.dto';
 import { newPasswordSchema, NewPasswordZodDto } from './dto/newPasswordZod.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt.guard';
 import { loginSchema, LoginZodDto } from './dto/loginZod.dto';
-import { config } from 'src/common/configs/env.config';
-import { GoogleAuthGuard } from 'src/common/guards/google.guard';
+import { GoogleAuthGuard } from '../../common/guards/google.guard';
+import { config } from '../../common/configs/env.config';
 
 
 @Controller('auth')
