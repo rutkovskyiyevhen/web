@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  app:
+    build: ./Backend
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./src/migrations:/app/src/migrations
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - sql_db
+
+  sql_db:
+    image: postgres:17
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: ${PASSWORD_DB}
+      POSTGRES_DB: ${NAME_DB}
+      POSTGRES_USER: ${USERNAME_DB}
+    ports:
+      - ${PORT_DB}:${PORT_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "127.0.0.1:8080:8080"
+
+volumes:
+  postgres_data:
+
